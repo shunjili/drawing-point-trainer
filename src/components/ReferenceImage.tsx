@@ -32,17 +32,35 @@ export const ReferenceImage: React.FC<ReferenceImageProps> = ({
     if (!ctx) return;
 
     const aspectRatio = imageData.width / imageData.height;
-    const screenMaxWidth = Math.floor(window.innerWidth * 0.4);
-    let displayWidth = Math.max(1000, imageData.width);
-    if (displayWidth > screenMaxWidth) displayWidth = screenMaxWidth;
-    let displayHeight = displayWidth / aspectRatio;
+    let displayWidth: number;
+    let displayHeight: number;
+    
+    if (gameState === GameState.GAME_PLAYING) {
+      // During game, make reference image smaller (50% of canvas size)
+      const screenMaxWidth = Math.floor(window.innerWidth * 0.2);
+      displayWidth = Math.max(400, imageData.width * 0.5);
+      if (displayWidth > screenMaxWidth) displayWidth = screenMaxWidth;
+      displayHeight = displayWidth / aspectRatio;
 
-    if (displayHeight > maxHeight) {
-      displayHeight = maxHeight;
-      displayWidth = displayHeight * aspectRatio;
-      displayWidth = Math.max(1000, displayWidth);
+      if (displayHeight > maxHeight * 0.6) {
+        displayHeight = maxHeight * 0.6;
+        displayWidth = displayHeight * aspectRatio;
+        displayWidth = Math.max(400, displayWidth);
+      }
+    } else {
+      // During setup, use larger size for comfortable marking
+      const screenMaxWidth = Math.floor(window.innerWidth * 0.4);
+      displayWidth = Math.max(1000, imageData.width);
+      if (displayWidth > screenMaxWidth) displayWidth = screenMaxWidth;
+      displayHeight = displayWidth / aspectRatio;
+
+      if (displayHeight > maxHeight) {
+        displayHeight = maxHeight;
+        displayWidth = displayHeight * aspectRatio;
+        displayWidth = Math.max(1000, displayWidth);
+      }
     }
-
+    
     canvas.width = displayWidth;
     canvas.height = displayHeight;
     

@@ -84,55 +84,54 @@ export const GameControls: React.FC<GameControlsProps> = ({
         </div>
       )}
 
-      <div style={{ marginTop: '30px', borderTop: '1px solid #eee', paddingTop: '20px' }}>
-        <h4>Configuration</h4>
-        
-        <div style={{ marginBottom: '10px' }}>
-          <label>
-            Points: 
-            <input
-              type="number"
-              min="3"
-              max="20"
-              value={config.pointCount}
-              onChange={(e) => handleConfigChange('pointCount', Number(e.target.value))}
-              style={{ width: '60px', marginLeft: '10px' }}
-              disabled={gameState === GameState.GAME_PLAYING}
-            />
-          </label>
-        </div>
+      {gameState !== GameState.GAME_PLAYING && (
+        <div style={{ marginTop: '30px', borderTop: '1px solid #eee', paddingTop: '20px' }}>
+          <h4>Configuration</h4>
+          
+          <div style={{ marginBottom: '10px' }}>
+            <label>
+              Points: 
+              <input
+                type="number"
+                min="3"
+                max="20"
+                value={config.pointCount}
+                onChange={(e) => handleConfigChange('pointCount', Number(e.target.value))}
+                style={{ width: '60px', marginLeft: '10px' }}
+              />
+            </label>
+          </div>
 
-        <div style={{ marginBottom: '10px' }}>
-          <label>
-            Tolerance %: 
-            <input
-              type="number"
-              min="1"
-              max="10"
-              step="0.5"
-              value={config.tolerancePercent}
-              onChange={(e) => handleConfigChange('tolerancePercent', Number(e.target.value))}
-              style={{ width: '60px', marginLeft: '10px' }}
-              disabled={gameState === GameState.GAME_PLAYING}
-            />
-          </label>
-        </div>
+          <div style={{ marginBottom: '10px' }}>
+            <label>
+              Tolerance %: 
+              <input
+                type="number"
+                min="1"
+                max="10"
+                step="0.5"
+                value={config.tolerancePercent}
+                onChange={(e) => handleConfigChange('tolerancePercent', Number(e.target.value))}
+                style={{ width: '60px', marginLeft: '10px' }}
+              />
+            </label>
+          </div>
 
-        <div style={{ marginBottom: '10px' }}>
-          <label>
-            Max Failed Attempts: 
-            <input
-              type="number"
-              min="5"
-              max="50"
-              value={config.maxFailedAttempts}
-              onChange={(e) => handleConfigChange('maxFailedAttempts', Number(e.target.value))}
-              style={{ width: '60px', marginLeft: '10px' }}
-              disabled={gameState === GameState.GAME_PLAYING}
-            />
-          </label>
+          <div style={{ marginBottom: '10px' }}>
+            <label>
+              Max Failed Attempts: 
+              <input
+                type="number"
+                min="5"
+                max="50"
+                value={config.maxFailedAttempts}
+                onChange={(e) => handleConfigChange('maxFailedAttempts', Number(e.target.value))}
+                style={{ width: '60px', marginLeft: '10px' }}
+              />
+            </label>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

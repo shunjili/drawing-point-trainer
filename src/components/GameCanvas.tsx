@@ -27,14 +27,14 @@ export const GameCanvas: React.FC<GameCanvasProps> = ({
 
     const aspectRatio = imageData.width / imageData.height;
     const screenMaxWidth = Math.floor(window.innerWidth * 0.4);
-    let displayWidth = Math.max(1000, imageData.width);
+    let displayWidth = Math.max(800, imageData.width);
     if (displayWidth > screenMaxWidth) displayWidth = screenMaxWidth;
     let displayHeight = displayWidth / aspectRatio;
 
     if (displayHeight > maxHeight) {
       displayHeight = maxHeight;
       displayWidth = displayHeight * aspectRatio;
-      displayWidth = Math.max(1000, displayWidth);
+      displayWidth = Math.max(800, displayWidth);
     }
 
     canvas.width = displayWidth;
