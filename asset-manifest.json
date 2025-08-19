@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/drawing-point-trainer/static/css/main.2210631a.css",
+    "main.js": "/drawing-point-trainer/static/js/main.787bac41.js",
+    "static/js/453.be110fef.chunk.js": "/drawing-point-trainer/static/js/453.be110fef.chunk.js",
+    "index.html": "/drawing-point-trainer/index.html",
+    "main.2210631a.css.map": "/drawing-point-trainer/static/css/main.2210631a.css.map",
+    "main.787bac41.js.map": "/drawing-point-trainer/static/js/main.787bac41.js.map",
+    "453.be110fef.chunk.js.map": "/drawing-point-trainer/static/js/453.be110fef.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2210631a.css",
+    "static/js/main.787bac41.js"
+  ]
+}
