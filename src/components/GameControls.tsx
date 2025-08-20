@@ -37,13 +37,13 @@ export const GameControls: React.FC<GameControlsProps> = ({
   }
 
   return (
-    <div style={{ padding: '20px', borderLeft: '1px solid #ccc' }}>
+    <div>
       <h3>Game Controls</h3>
       
       {gameState === GameState.SETUP_MARKING && (
-        <div>
+        <div className="controls-section">
           <p>Points marked: {pointsMarked}/{totalPoints}</p>
-          <button onClick={onUndo} disabled={!canUndo}>
+          <button onClick={onUndo} disabled={!canUndo} className="button-secondary">
             Undo Last Point
           </button>
           <button 
@@ -57,24 +57,50 @@ export const GameControls: React.FC<GameControlsProps> = ({
       )}
 
       {gameState === GameState.GAME_PLAYING && (
-        <div>
-          <p>Successful marks: {stats.successfulMarks}</p>
-          <p>Failed attempts: {stats.failedAttempts}/{config.maxFailedAttempts}</p>
-          <p>Accuracy: {stats.accuracy.toFixed(1)}%</p>
-          <p>Select a point on the reference image to mark it</p>
+        <div className="stats-grid">
+          <div className="stat-item">
+            <div className="stat-value">{stats.successfulMarks}</div>
+            <div className="stat-label">Successful</div>
+          </div>
+          <div className="stat-item">
+            <div className="stat-value">{stats.failedAttempts}/{config.maxFailedAttempts}</div>
+            <div className="stat-label">Failed</div>
+          </div>
+          <div className="stat-item">
+            <div className="stat-value">{stats.accuracy.toFixed(1)}%</div>
+            <div className="stat-label">Accuracy</div>
+          </div>
+          <div className="stat-item">
+            <div className="stat-value">📍</div>
+            <div className="stat-label">Select Point</div>
+          </div>
         </div>
       )}
 
       {gameState === GameState.RESULTS && (
         <div>
           <h3>Results</h3>
-          <p>Status: {stats.completed ? 'Completed!' : 'Failed'}</p>
-          <p>Successful marks: {stats.successfulMarks}/{totalPoints}</p>
-          <p>Failed attempts: {stats.failedAttempts}</p>
-          <p>Final accuracy: {stats.accuracy.toFixed(1)}%</p>
+          <div className="stats-grid">
+            <div className="stat-item">
+              <div className="stat-value">{stats.completed ? '✓' : '✗'}</div>
+              <div className="stat-label">{stats.completed ? 'Completed' : 'Failed'}</div>
+            </div>
+            <div className="stat-item">
+              <div className="stat-value">{stats.successfulMarks}/{totalPoints}</div>
+              <div className="stat-label">Success Rate</div>
+            </div>
+            <div className="stat-item">
+              <div className="stat-value">{stats.failedAttempts}</div>
+              <div className="stat-label">Failed Attempts</div>
+            </div>
+            <div className="stat-item">
+              <div className="stat-value">{stats.accuracy.toFixed(1)}%</div>
+              <div className="stat-label">Final Accuracy</div>
+            </div>
+          </div>
           
-          <div style={{ marginTop: '20px' }}>
-            <button onClick={onNewRound} style={{ marginRight: '10px' }}>
+          <div className="controls-section">
+            <button onClick={onNewRound} className="button-secondary" style={{ marginRight: '10px' }}>
               New Round (Same Image)
             </button>
             <button onClick={onNewImage}>
@@ -85,26 +111,23 @@ export const GameControls: React.FC<GameControlsProps> = ({
       )}
 
       {gameState !== GameState.GAME_PLAYING && (
-        <div style={{ marginTop: '30px', borderTop: '1px solid #eee', paddingTop: '20px' }}>
+        <div className="controls-section">
           <h4>Configuration</h4>
           
-          <div style={{ marginBottom: '10px' }}>
-            <label>
-              Points: 
+          <div className="config-grid">
+            <div className="config-item">
+              <label>Points:</label>
               <input
                 type="number"
                 min="3"
                 max="20"
                 value={config.pointCount}
                 onChange={(e) => handleConfigChange('pointCount', Number(e.target.value))}
-                style={{ width: '60px', marginLeft: '10px' }}
               />
-            </label>
-          </div>
+            </div>
 
-          <div style={{ marginBottom: '10px' }}>
-            <label>
-              Tolerance %: 
+            <div className="config-item">
+              <label>Tolerance %:</label>
               <input
                 type="number"
                 min="1"
@@ -112,23 +135,19 @@ export const GameControls: React.FC<GameControlsProps> = ({
                 step="0.5"
                 value={config.tolerancePercent}
                 onChange={(e) => handleConfigChange('tolerancePercent', Number(e.target.value))}
-                style={{ width: '60px', marginLeft: '10px' }}
               />
-            </label>
-          </div>
+            </div>
 
-          <div style={{ marginBottom: '10px' }}>
-            <label>
-              Max Failed Attempts: 
+            <div className="config-item">
+              <label>Max Failed Attempts:</label>
               <input
                 type="number"
                 min="5"
                 max="50"
                 value={config.maxFailedAttempts}
                 onChange={(e) => handleConfigChange('maxFailedAttempts', Number(e.target.value))}
-                style={{ width: '60px', marginLeft: '10px' }}
               />
-            </label>
+            </div>
           </div>
         </div>
       )}

@@ -164,7 +164,12 @@ export const ReferenceImage: React.FC<ReferenceImageProps> = ({
         ref={canvasRef}
         onClick={handleCanvasClick}
         onMouseMove={handleMouseMove}
-        style={{ border: '1px solid #ccc', display: 'block' }}
+        style={{ 
+          border: '2px solid rgba(255, 255, 255, 0.3)', 
+          borderRadius: '8px',
+          display: 'block',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
+        }}
       />
       {gameState === GameState.SETUP_MARKING && (
         <p>Points marked: {points.length}/{imageData ? Math.min(points.length + (points.length < 10 ? 1 : 0), 10) : 0}</p>

@@ -93,10 +93,12 @@ export const GameCanvas: React.FC<GameCanvasProps> = ({
         ref={canvasRef}
         onClick={handleCanvasClick}
         style={{ 
-          border: '1px solid #ccc', 
+          border: '2px solid rgba(255, 255, 255, 0.3)', 
+          borderRadius: '8px',
           display: 'block',
           cursor: 'crosshair',
-          backgroundColor: '#f8f8f8'
+          backgroundColor: '#f8f8f8',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
         }}
       />
       <p>Click to mark the selected point</p>

@@ -28,20 +28,20 @@ function App() {
 
   return (
     <div className="App">
-      <header style={{ padding: '20px', borderBottom: '1px solid #ccc' }}>
+      <header className="app-header">
         <h1>Drawing Point Training</h1>
       </header>
 
-      <main style={{ display: 'flex', minHeight: 'calc(100vh - 80px)' }}>
+      <main className="main-content">
         {gameState === GameState.IMAGE_LOADING && (
-          <div style={{ flex: 1 }}>
+          <div className="panel" style={{ flex: 1, margin: '16px auto', maxWidth: '600px' }}>
             <ImageLoader onImageLoad={loadImage} />
           </div>
         )}
 
         {(gameState === GameState.SETUP_MARKING || gameState === GameState.GAME_PLAYING) && imageData && (
           <>
-            <div style={{ flex: 1, padding: '20px' }}>
+            <div className="panel" style={{ flex: 1 }}>
               <h3>Reference Image</h3>
               <ReferenceImage
                 imageData={imageData}
@@ -53,7 +53,7 @@ function App() {
             </div>
 
             {gameState === GameState.GAME_PLAYING && (
-              <div style={{ flex: 1, padding: '20px' }}>
+              <div className="panel" style={{ flex: 1 }}>
                 <h3>Your Canvas</h3>
                 <GameCanvas
                   imageData={imageData}
@@ -63,7 +63,7 @@ function App() {
               </div>
             )}
 
-            <div style={{ width: '300px' }}>
+            <div className="panel" style={{ width: '300px', minWidth: '300px' }}>
               <GameControls
                 gameState={gameState}
                 config={config}
@@ -82,7 +82,7 @@ function App() {
         )}
 
         {gameState === GameState.RESULTS && (
-          <div style={{ flex: 1 }}>
+          <div className="panel" style={{ flex: 1, margin: '16px auto', maxWidth: '600px' }}>
             <GameControls
               gameState={gameState}
               config={config}

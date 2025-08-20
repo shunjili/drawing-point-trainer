@@ -4,7 +4,7 @@ import { GameState, Point, GameConfig, GameStats, ImageData } from '../types/gam
 const DEFAULT_CONFIG: GameConfig = {
   pointCount: 10,
   tolerancePercent: 3,
-  maxFailedAttempts: 20
+  maxFailedAttempts: 40
 };
 
 export const useGameState = () => {
