@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Point, ImageData } from '../types/game';
-import { drawCrosshair, drawX, clearCanvas, getCanvasCoordinates } from '../utils/canvas';
+import { drawSuccessDot, drawDot, clearCanvas, getCanvasCoordinates } from '../utils/canvas';
 
 interface GameCanvasProps {
   imageData: ImageData;
@@ -61,13 +61,13 @@ export const GameCanvas: React.FC<GameCanvasProps> = ({
     markedPoints.forEach(point => {
       const x = point.x * scale.x;
       const y = point.y * scale.y;
-      drawCrosshair(ctx, x, y, 12, 1, '#00aa00');
+      drawSuccessDot(ctx, x, y, 8, 1, '#00aa00');
     });
 
     if (showFailAnimation) {
       const x = showFailAnimation.x * scale.x;
       const y = showFailAnimation.y * scale.y;
-      drawX(ctx, x, y);
+      drawDot(ctx, x, y, 8, '#ff0000');
     }
   }, [markedPoints, scale, showFailAnimation]);
 

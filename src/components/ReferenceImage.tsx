@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Point, ImageData, GameState } from '../types/game';
-import { drawCrosshair, drawImage, getCanvasCoordinates } from '../utils/canvas';
+import { drawSuccessDot, drawImage, getCanvasCoordinates } from '../utils/canvas';
 
 interface ReferenceImageProps {
   imageData: ImageData;
@@ -89,9 +89,9 @@ export const ReferenceImage: React.FC<ReferenceImageProps> = ({
         if (isPulsing) {
           const time = Date.now() / 1000;
           const pulseScale = 1 + 0.3 * Math.sin(time * 4);
-          drawCrosshair(ctx, x, y, 10 * pulseScale, opacity, color);
+          drawSuccessDot(ctx, x, y, 8 * pulseScale, opacity, color);
         } else {
-          drawCrosshair(ctx, x, y, 10, opacity, color);
+          drawSuccessDot(ctx, x, y, 8, opacity, color);
         }
       });
     };
