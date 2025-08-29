@@ -120,7 +120,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
               <input
                 type="number"
                 min="3"
-                max="20"
+                max="40"
                 value={config.pointCount}
                 onChange={(e) => handleConfigChange('pointCount', Number(e.target.value))}
               />
